@@ -15,7 +15,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
   String _fatContent = "";
   int _price = 0;
   int _quantity = 0;
-  double _rating = 0.0;
+  int _rating = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -175,14 +175,14 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      _rating = double.tryParse(value!) ?? 0.0;
+                      _rating = int.tryParse(value!) ?? 0;
                     });
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Rating tidak boleh kosong!";
                     }
-                    final rating = double.tryParse(value);
+                    final rating = int.tryParse(value);
                     if (rating == null) {
                       return "Rating harus berupa angka!";
                     }
