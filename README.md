@@ -1,3 +1,20 @@
+## Tugas 8
+
+#### Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+const digunakan untuk mendefinisikan objek yang tidak akan berubah saat aplikasi berjalan. Keuntungan utama menggunakan const adalah efisiensi memori dan performa aplikasi karena widget yang bersifat konstan dapat didaur ulang. Kita sebaiknya menggunakan const pada widget atau nilai yang sifatnya tetap, misalnya teks atau ikon yang tidak akan berubah selama siklus hidup aplikasi. Namun, const tidak digunakan pada elemen yang memiliki perubahan nilai atau data yang dinamis.
+
+#### Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+Column dan Row adalah widget layout yang berguna untuk menyusun elemen secara vertikal (Column) dan horizontal (Row). Misalnya, pada aplikasi form, Column sering digunakan untuk menata form input agar vertikal. Sedangkan Row cocok untuk menyusun elemen seperti ikon atau teks secara horizontal. Contoh implementasi Column: Column(children: [Text("Nama"), TextField()]); sedangkan contoh Row: Row(children: [Icon(Icons.star), Text("Rating")]).
+
+#### Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+Pada halaman form tugas ini, elemen input yang digunakan meliputi TextFormField untuk memasukkan nama, deskripsi, kandungan lemak, harga, jumlah, dan rating produk. Elemen input lain di Flutter seperti DropdownButton, Slider, atau Checkbox tidak digunakan karena tidak relevan dengan data input yang dibutuhkan. Elemen-elemen tersebut lebih cocok untuk pilihan yang bersifat tetap atau opsi biner.
+
+#### Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+Tema diatur dengan mengatur ThemeData pada kelas utama MyApp di Flutter, sehingga gaya warna utama dan sekunder konsisten di seluruh aplikasi. Tema dapat mencakup warna utama, sekunder, font, dan gaya tombol, memastikan tampilan yang seragam. Pada aplikasi ini, tema sudah diterapkan melalui primaryColor dan colorScheme, memungkinkan penggunaan warna seragam di seluruh aplikasi.
+
+#### Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Navigasi dalam aplikasi Flutter dengan banyak halaman biasanya dilakukan dengan menggunakan Navigator. Pada aplikasi ini, navigasi diterapkan dengan Navigator.push untuk berpindah halaman seperti menuju halaman form tambah produk. Untuk kembali atau menghapus halaman dari stack, bisa menggunakan Navigator.pop, atau Navigator.pushReplacement untuk mengganti halaman sebelumnya.
+
 ## Tugas 7
 
 #### Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.

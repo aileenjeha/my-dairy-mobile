@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_dairy_mobile/menu.dart';
+import 'package:my_dairy_mobile/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Color(0xFF3DA6BD), // Warna utama sesuai dengan hex 73DAF1
+        primaryColor: Color(0xFF3DA6BD), 
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Color(0xFF3DA6BD),
           secondary: Color(0xFF3DA6BD),
