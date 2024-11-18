@@ -3,6 +3,7 @@ import 'package:my_dairy_mobile/models/product.dart';
 import 'package:my_dairy_mobile/widgets/left_drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'product_detail.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -14,11 +15,8 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   Future<List<Product>> fetchProduct(CookieRequest request) async {
     final response = await request.get('http://127.0.0.1:8000/json/');
-    
-    // Melakukan decode response menjadi bentuk json
     var data = response;
-    
-    // Melakukan konversi data json menjadi object Product
+
     List<Product> listProduct = [];
     for (var d in data) {
       if (d != null) {
@@ -55,34 +53,45 @@ class _ProductPageState extends State<ProductPage> {
             } else {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${snapshot.data![index].fields.name}", // Nama produk
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+                itemBuilder: (_, index) {
+                  final product = snapshot.data![index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailPage(product: product),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              product.fields.name,
+                              style: const TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text("Price: Rp${product.fields.price}"),
+                            const SizedBox(height: 8),
+                            Text("Description: ${product.fields.description}"),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      Text("Price: Rp${snapshot.data![index].fields.price}"), 
-                      const SizedBox(height: 10),
-                      Text("Description: ${snapshot.data![index].fields.description}"), 
-                      const SizedBox(height: 10),
-                      Text("Fat Content: ${snapshot.data![index].fields.fatContent}"), 
-                      const SizedBox(height: 10),
-                      Text("Quantity: ${snapshot.data![index].fields.quantity}"), 
-                      const SizedBox(height: 10),
-                      Text("Rating: ${snapshot.data![index].fields.rating}"), 
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               );
             }
           }
